@@ -4,20 +4,20 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: 'mfe-a',
-    loadChildren: () =>
+    loadComponent: () =>
       loadRemoteModule({
         type: 'module',
         remoteEntry: 'http://localhost:4201/remoteEntry.js',
-        exposedModule: './Module',
-      }).then((m) => m.AppModule),
+        exposedModule: './AppComponent',
+      }).then((c) => c.AppComponent),
   },
   {
     path: 'mfe-b',
-    loadChildren: () =>
+    loadComponent: () =>
       loadRemoteModule({
         type: 'module',
         remoteEntry: 'http://localhost:4202/remoteEntry.js',
-        exposedModule: './Module',
-      }).then((m) => m.AppModule),
+        exposedModule: './AppComponent',
+      }).then((c) => c.AppComponent),
   },
 ];

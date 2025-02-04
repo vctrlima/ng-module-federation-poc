@@ -4,9 +4,10 @@ const {
 } = require("@angular-architects/module-federation/webpack");
 
 module.exports = withModuleFederationPlugin({
-  remotes: {
-    mfeA: "http://localhost:4201/remoteEntry.js",
-    mfeB: "http://localhost:4202/remoteEntry.js",
+  name: "mfe-a",
+  exposes: {
+    "./routes": "./projects/mfe-a/src/app/app.routes.ts",
+    "./AppComponent": "./projects/mfe-a/src/app/app.component.ts",
   },
   shared: {
     ...shareAll({
