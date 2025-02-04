@@ -13,11 +13,11 @@ export const routes: Routes = [
   },
   {
     path: 'mfe-b',
-    loadComponent: () =>
+    loadChildren: () =>
       loadRemoteModule({
         type: 'module',
         remoteEntry: 'http://localhost:4202/remoteEntry.js',
-        exposedModule: './AppComponent',
-      }).then((c) => c.AppComponent),
+        exposedModule: './routes',
+      }).then((m) => m.routes),
   },
 ];

@@ -225,11 +225,10 @@
 			"prefix": "app",
 			"architect": {
 				"build": {
-					"builder": "@angular-devkit/build-angular:application",
+					"builder": "ngx-build-plus:browser",
 					"options": {
 						"outputPath": "dist/mfe-b",
 						"index": "projects/mfe-b/src/index.html",
-						"browser": "projects/mfe-b/src/main.ts",
 						"polyfills": [
 							"zone.js"
 						],
@@ -238,13 +237,17 @@
 						"assets": [
 							{
 								"glob": "**/*",
-								"input": "projects/mfe-b/public"
+								"input": "projects/mfe-b/public",
+								"output": "."
 							}
 						],
 						"styles": [
 							"projects/mfe-b/src/styles.scss"
 						],
-						"scripts": []
+						"scripts": [],
+						"main": "projects/mfe-b/src/main.ts",
+						"extraWebpackConfig": "projects/mfe-b/webpack.config.js",
+						"commonChunk": false
 					},
 					"configurations": {
 						"production": {
@@ -260,7 +263,8 @@
 									"maximumError": "8kB"
 								}
 							],
-							"outputHashing": "all"
+							"outputHashing": "all",
+							"extraWebpackConfig": "projects/mfe-b/webpack.prod.config.js"
 						},
 						"development": {
 							"optimization": false,
@@ -271,16 +275,22 @@
 					"defaultConfiguration": "production"
 				},
 				"serve": {
-					"builder": "@angular-devkit/build-angular:dev-server",
+					"builder": "ngx-build-plus:dev-server",
 					"configurations": {
 						"production": {
-							"buildTarget": "mfe-b:build:production"
+							"buildTarget": "mfe-b:build:production",
+							"extraWebpackConfig": "projects/mfe-b/webpack.prod.config.js"
 						},
 						"development": {
 							"buildTarget": "mfe-b:build:development"
 						}
 					},
-					"defaultConfiguration": "development"
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4202,
+						"publicHost": "http://localhost:4202",
+						"extraWebpackConfig": "projects/mfe-b/webpack.config.js"
+					}
 				},
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n"
