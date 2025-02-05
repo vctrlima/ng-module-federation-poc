@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-child-b',
   imports: [],
   templateUrl: './child-b.component.html',
-  styleUrl: './child-b.component.scss'
+  styleUrl: './child-b.component.scss',
 })
-export class ChildBComponent {
-
-}
+export class ChildBComponent {}
